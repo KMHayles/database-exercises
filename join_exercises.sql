@@ -40,10 +40,35 @@ WHERE emp_no IN (
                 )
 ORDER BY first_name;
 
-SELECT CONCAT(e.first_name, ' ', e.last_name) AS Department_Manager, d.dept_name Department_Name
+SELECT d.dept_name Department_Name, CONCAT(e.first_name, ' ', e.last_name) AS Department_Manager
 FROM employees as e
 JOIN dept_manager as dm ON dm.emp_no = e.emp_no
 JOIN departments as d ON d.dept_no = dm.dept_no
-WHERE dm.to_date = '9999-01-01';
+WHERE dm.to_date = '9999-01-01'
+ORDER BY d.dept_name;
+
+
+SELECT d.dept_name Department_Name, CONCAT(e.first_name, ' ', e.last_name) AS Department_Manager
+FROM employees as e
+         JOIN dept_manager as dm ON dm.emp_no = e.emp_no
+         JOIN departments as d ON d.dept_no = dm.dept_no
+WHERE dm.to_date = '9999-01-01' AND gender = 'F'
+ORDER BY d.dept_name;
+
+
+SELECT CONCAT(t.title) AS 'Title', COUNT(*) AS 'TOTAL' from titles AS t
+JOIN dept_emp de ON t.emp_no = de.emp_no
+WHERE de.dept_no = 'd009' AND t.to_date = '9999-01-01' AND de.to_date = '9999-01-01'
+GROUP BY t.title;
+
+
+# my version
+SELECT t.title, d.dept_name Total
+FROM employees as e
+JOIN titles as t ON t.title = e.emp_no
+JOIN  departments d ON d.dept_name = t.title
+WHERE d.dept_name = 'd009'
+
+
 
 
