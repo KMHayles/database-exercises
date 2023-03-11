@@ -69,6 +69,13 @@ JOIN titles as t ON t.title = e.emp_no
 JOIN  departments d ON d.dept_name = t.title
 WHERE d.dept_name = 'd009'
 
+SELECT d.dept_name AS 'Department Name', CONCAT(e.first_name, ' ', e.last_name) AS 'dept_manager', s.emp_no
+from employees AS e
+JOIN dept_manager AS dm on e.emp_no = dm.emp_no
+JOIN departments AS d on dm.dept_no = d.dept_no
+JOIN salaries AS s on e.emp_no = s.emp_no
+WHERE dm.to_date = '9999-01-01' AND s.to_date = '9999-01-01'
+ORDER BY d.dept_name;
 
 
 
