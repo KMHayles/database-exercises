@@ -6,6 +6,8 @@ describe dept_manager;
 
 select * FROM employees;
 
+select * FROM salaries;
+
 select * FROM dept_manager;
 
 select * FROM departments;
